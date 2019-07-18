@@ -1,0 +1,175 @@
+body{
+    direction: rtl;
+    text-align: right;
+}
+#mainContent {
+    margin-left: 215px;
+    margin-right: 215px;
+}
+
+#main {
+    text-align: right;
+}
+.mr-auto, .mx-auto {
+    margin-left: auto !important;
+    margin-right: 0 !important; 
+}
+.sf-menu li:hover ul,
+.sf-menu li.sfHover ul {
+    left:auto;
+    right: 0;
+}
+ul.sf-menu li li:hover ul,
+ul.sf-menu li li.sfHover ul {
+    left:auto;
+    right:13.3em; /* match ul width */
+}
+.sf-menu li li {
+    margin-top: 0;
+    padding: 3px 5px 3px 0;
+    text-align: right;
+}
+.sf-sub-indicator {
+    left: 5px;
+    right: auto;
+    background: none;
+    display: inline-block;
+    font: normal normal normal 0 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: auto;
+    height: auto;
+    text-indent: 0;
+    font-size: 0;
+}
+.sf-sub-indicator:before {
+    content: "\f0d9";
+    font-size: 14px;
+}
+#leftNav {
+    border-right: #a4afb7 solid 1px;
+    border-left: #a4afb7 solid 2px;
+}
+#leftNav h3 {
+    padding: 0px 15px 0px 0;
+    font-size: 13px;
+}
+#leftNav h2 a, #leftNav h2 span {padding:7px 15px 4px 0;} 
+#leftNav ul.arrow li a, #leftNav ul.arrow li span {
+    padding: 7px 15px 4px 0;
+}
+#leftNav h2 {
+    font-size: 15px;
+}
+div.control-box-left-content {
+    float: right;
+}
+.control-box-left-content>div, .control-box-middle-content>div{
+    left: 0 !important;
+    right: -5000px;
+}
+div.control-box-right-content {
+    float: left;
+}
+div.control-box-middle-content {
+    float: right;
+}
+.form-button i.caIcon, .form-header-button i.caIcon {
+    margin-left: 5px;
+    margin-right: 0;
+}
+.fa-chevron-circle-right:before {
+    content: "\f137";
+}
+#showTools, #hideTools, #showRefine, #showOptions {
+    margin: 1px 15px 0px 2px;
+}
+.bundleLabel .iconButton {
+    float: left;
+}
+.formLabelText {
+    padding-left:0;
+    padding-right: 10px;
+}
+div.roundedRel {
+    float: right;
+}
+#leftNav .button.info {
+    float: right;
+}
+#leftNav .watchThis, #leftNav #inspectorChangeType, #leftNav #inspectorCreateChild, #leftNav #caDuplicateItemButton, #leftNav #inspectorLotMediaDownloadButton, #leftNav #inspectorSetMediaDownloadButton {
+    float: right;
+}
+table.preferenceColumnSelector tbody tr td.preferenceColumnSelectorLabel {
+    text-align: right;
+}
+.caNavHeaderIcon {
+    float: left;
+    margin: 0px 5px 0 0;
+}
+.elementSettingsUI a {
+    float: left;
+}
+.facetHeadingLink {
+    float: right;
+    margin-left: 30px;
+    margin-right: 0;
+}
+div.browseSelectPanelListGroupHeading {
+    padding-right: 10px;
+    margin: 0 0 0 20px;
+}
+.caDeleteLabel{
+    float: left;
+}
+.portlet-header {
+    font-size: 15px;
+    padding: 7px 10px 2px 0;
+}
+.dashboardRemoveWidget {
+    float: left;
+}
+.dashboardWidgetSettingsButton {
+    float: left;
+}
+.portlet-content {
+    background-color: #fbfbfb;
+    padding: 15px 15px 15px 0;
+}
+.criteriaLink{
+    padding: 0 0 0 5px;
+    margin-right: 0;
+    margin-left: 5px;
+}
+.criteriaLink:last-of-type {
+    margin-right: 0;
+    margin-left: 15px;
+}
+#searchRefineParameters a.close {
+    margin-left: 5px;
+    margin-right: 0;
+}
+#saveOptions {
+    float: left;
+    margin: 2px 0 0 5px;
+}
+#hideOptions {
+    float: left;
+}
+table.listtable {
+    font-size: 13px;
+}
+.editorBatchModeControl {
+    float: left;
+}
+div.hierarchyBrowserContainer{
+    direction: ltr;
+}
+a.browseSelectPanelButton {
+    float: left;
+}
+.floatbylang{
+    float: left;
+}

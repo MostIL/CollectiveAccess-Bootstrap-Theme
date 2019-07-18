@@ -1,5 +1,5 @@
 # collective-access-template
-Theme for CollectiveAccess system. The theme base on Bootstrap framework and support RTL languages.
+Theme for CollectiveAccess. The theme is based on the Bootstrap framework and supports RTL languages.
 
-#Installation instructions
-Extract the files into theme folder.
+# Installation Instructions
+Extract the files into the themes folder.

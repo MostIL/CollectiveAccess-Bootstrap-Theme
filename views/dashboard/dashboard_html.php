@@ -1,27 +1,29 @@
 <?php
 /* ----------------------------------------------------------------------
- * themes/default/views/dashboard/dashboard_html.php : 
+ * views/dashboard/dashboard_html.php : 
  * ----------------------------------------------------------------------
- * CollectiveAccess
+ * Israel Ministry of Sports and Culture 
+ * 
+ * Theme for CollectiveAccess
  * Open-source collections management software
  * ----------------------------------------------------------------------
  *
- * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
- * Copyright 2010-2016 Whirl-i-Gig
+ * For more information about Israel Ministry of Sports and Culture visit:
+ * https://www.gov.il/en/Departments/ministry_of_culture_and_sport
  *
- * For more information visit http://www.CollectiveAccess.org
+ * For more information about CollectiveAccess visit:
+ * http://www.CollectiveAccess.org
  *
  * This program is free software; you may redistribute it and/or modify it under
- * the terms of the provided license as published by Whirl-i-Gig
+ * the terms of the provided license.
  *
- * CollectiveAccess is distributed in the hope that it will be useful, but
+ * This theme for CollectiveAccess is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  *
  * This source code is free and modifiable under the terms of 
  * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
- * the "license.txt" file for details, or visit the CollectiveAccess web site at
- * http://www.CollectiveAccess.org
+ * the "license.txt" file for details. 
  *
  * ----------------------------------------------------------------------
  */
@@ -30,11 +32,6 @@
 	AssetLoadManager::register('draggableUI');		// adds jQuery UI draggable 
 	AssetLoadManager::register('dashboard');			// adds caUI dashboard library
 ?>
-<h1 class="text-center">
-	<a href="http://mana.mcs.gov.il/training/" target="_blank">
-		<img src="<?php print $this->request->getUrlPathForThemeFile("graphics/Training.png")?>" alt="מדריך לשימוש במערכת"/>
-	</a>
-</h1>
 <!-- Empty DIV uses for the "popup" widget chooser panel -->
 <div id="dashboardWidgetPanel" class="dashboardWidgetPanel">
 	<a href="#" onclick="caDashboardWidgetPanel.hideWidgetPanel();" class="dashboardWidgetPanelHide">&nbsp;</a>

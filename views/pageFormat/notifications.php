@@ -1,24 +1,30 @@
 <?php
 /**
- *
- * notifications.php.  Copyright 2008 Whirl-i-Gig (http://www.whirl-i-gig.com)
+ * ----------------------------------------------------------------------
+ * views/pageFormat/notifications.php: 
+ * ----------------------------------------------------------------------
+ * Israel Ministry of Sports and Culture 
  * 
+ * Theme for CollectiveAccess
+ * Open-source collections management software
+ * ----------------------------------------------------------------------
  *
- * @author Seth Kaufman <seth@whirl-i-gig.com>
- * @copyright Copyright 2008 Whirl-i-Gig (http://www.whirl-i-gig.com)
- * @license http://www.gnu.org/copyleft/gpl.html
- * @package CollectiveAccess
+ * For more information about Israel Ministry of Sports and Culture visit:
+ * https://www.gov.il/en/Departments/ministry_of_culture_and_sport
  *
- * Disclaimer:  There are no doubt inefficiencies and bugs in this code; the
- * documentation leaves much to be desired. If you'd like to improve these  
- * libraries please consider helping us develop this software. 
+ * For more information about CollectiveAccess visit:
+ * http://www.CollectiveAccess.org
  *
- * CollectiveAccess is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
+ * This program is free software; you may redistribute it and/or modify it under
+ * the terms of the provided license.
  *
- * This source code are free and modifiable under the terms of 
- * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html)
+ * This theme for CollectiveAccess is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  *
- *
+ * This source code is free and modifiable under the terms of 
+ * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
+ * the "license.txt" file for details. 
  */
 
 		if (sizeof($this->getVar('notifications'))) {

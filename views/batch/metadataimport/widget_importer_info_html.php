@@ -1,28 +1,30 @@
 <?php
 /* ----------------------------------------------------------------------
- * app/views/batch/metadataimport/widget_item_info_html.php : 
+ * views/batch/metadataimport/widget_item_info_html.php : 
  * ----------------------------------------------------------------------
- * CollectiveAccess
- * Open-source places management software
+ * Israel Ministry of Sports and Culture 
+ * 
+ * Theme for CollectiveAccess
+ * Open-source collections management software
  * ----------------------------------------------------------------------
  *
- * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
- * Copyright 2013 Whirl-i-Gig
+ * For more information about Israel Ministry of Sports and Culture visit:
+ * https://www.gov.il/en/Departments/ministry_of_culture_and_sport
  *
- * For more information visit http://www.CollectiveAccess.org
+ * For more information about CollectiveAccess visit:
+ * http://www.CollectiveAccess.org
  *
  * This program is free software; you may redistribute it and/or modify it under
- * the terms of the provided license as published by Whirl-i-Gig
+ * the terms of the provided license.
  *
- * CollectiveAccess is distributed in the hope that it will be useful, but
+ * This theme for CollectiveAccess is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  *
  * This source code is free and modifiable under the terms of 
  * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
- * the "license.txt" file for details, or visit the CollectiveAccess web site at
- * http://www.CollectiveAccess.org
- *
+ * the "license.txt" file for details. 
+ * 
  * ----------------------------------------------------------------------
  */
  	

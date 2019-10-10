@@ -29,11 +29,11 @@
 					
 						if ($this->request->isLoggedIn() && ($this->request->user->getPreference('clear_quicksearch') == 'auto_clear')) { 
 ?>
-						<input type="text" name="search" length="15" class="form-control mr-sm-2" id="caQuickSearchFormText" value="<?php print htmlspecialchars($this->request->session->getVar('quick_search_last_search'), ENT_QUOTES, 'UTF-8'); ?>" onfocus="this.value='';"/>
+						<input type="text" name="search" length="15" class="form-control mr-sm-2" id="caQuickSearchFormText" value="<?php print htmlspecialchars(Session::getVar('quick_search_last_search'), ENT_QUOTES, 'UTF-8'); ?>" onfocus="this.value='';"/>
 <?php						
 						} else {
 ?>
-						<input type="text" name="search" length="15" class="form-control mr-sm-2" id="caQuickSearchFormText" value="<?php print htmlspecialchars($this->request->session->getVar('quick_search_last_search'), ENT_QUOTES, 'UTF-8'); ?>" onfocus="<?php print htmlspecialchars($this->request->session->getVar('quick_search_last_search'), ENT_QUOTES, 'UTF-8'); ?>"/>	
+						<input type="text" name="search" length="15" class="form-control mr-sm-2" id="caQuickSearchFormText" value="<?php print htmlspecialchars(Session::getVar('quick_search_last_search'), ENT_QUOTES, 'UTF-8'); ?>" onfocus="<?php print htmlspecialchars($this->request->session->getVar('quick_search_last_search'), ENT_QUOTES, 'UTF-8'); ?>"/>	
 <?php
 						}
 ?>

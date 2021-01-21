@@ -7,7 +7,7 @@
  * ----------------------------------------------------------------------
  *
  * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
- * Copyright 2009-2016 Whirl-i-Gig
+ * Copyright 2009-2017 Whirl-i-Gig
  *
  * For more information visit http://www.CollectiveAccess.org
  *
@@ -139,30 +139,18 @@
 	<div class='clearDivide'></div>
 
 	<div class="browseSelectPanelList">
-		<table class='browseSelectPanelListTable' id='<?php print $vs_facet_name; ?>_facet_container'>
+	<ul class="list-group" id='<?php print $vs_facet_name; ?>_facet_container'>
 <?php
 			$va_row = array();
 			foreach($va_facet as $vn_i => $va_item) {
 				$vs_label = caGetLabelForDisplay($va_facet, $va_item, $va_facet_info);
 				
-				$va_row[] = "<td class='browseSelectPanelListCell facetItem' width='{$va_td_width}%;' data-facet_item_id='{$va_item['id']}'>".caNavLink($this->request, html_entity_decode($vs_label), 'browseSelectPanelLink', 'find', $this->request->getController(), ((strlen($vm_modify_id)) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => urlencode($va_item['id']), 'mod_id' => $vm_modify_id))."</td>";
-				
-				if (sizeof($va_row) == $va_row_size) {
-					print "<tr valign='top'>".join('', $va_row)."</tr>\n";
-					
-					$va_row = array();
-				}
-			}
-			if (sizeof($va_row) > 0) {
-				if (sizeof($va_row) < $va_row_size) {
-					for($vn_i = sizeof($va_row); $vn_i <= $va_row_size; $vn_i++) {
-						$va_row[] = '<td> </td>';
-					}
-				}
-				print "<tr valign='top'>".join('', $va_row)."</tr>\n";
+				$vs_content_count = (isset($va_item['content_count']) && ($va_item['content_count'] > 0)) ? " (".$va_item['content_count'].")" : "";
+				print "<li class='list-group-item list-group-item-action' data-facet_item_id='{$va_item['id']}'>".caNavLink($this->request, html_entity_decode($vs_label), 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id)) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => urlencode($va_item['id']), 'mod_id' => $vm_modify_id))."<span class='badge badge-primary badge-pill'>{$vs_content_count}</span></li>";
+
 			}
 ?>
-		</table>
+		</ul>
 	</div>
 <?php
 			break;
@@ -219,29 +207,17 @@
 				}
 				print "<div class='browseSelectPanelListGroupHeading'><a name='{$vs_group}' class='browseSelectPanelListGroupHeading'>{$vs_group}</a></div>\n";
 ?>
-		<table class='browseSelectPanelListTable'>
+		<ul class="list-group">
 <?php
 				foreach($va_items as $va_item) {
 					$vs_label = caGetLabelForDisplay($va_facet, $va_item, $va_facet_info);
 				
-					$va_row[] = "<td class='browseSelectPanelListCell facetItem' width='{$va_td_width}%;' data-facet_item_id='{$va_item['id']}'>".caNavLink($this->request, html_entity_decode($vs_label), 'browseSelectPanelLink', 'find', $this->request->getController(), ((strlen($vm_modify_id) > 0) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => urlencode($va_item['id']), 'mod_id' => $vm_modify_id))."</td>";
+				    $vs_content_count = (isset($va_item['content_count']) && ($va_item['content_count'] > 0)) ? " (".$va_item['content_count'].")" : "";
+					print "<li class='list-group-item list-group-item-action' data-facet_item_id='{$va_item['id']}'>".caNavLink($this->request, html_entity_decode($vs_label), 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id) > 0) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => urlencode($va_item['id']), 'mod_id' => $vm_modify_id))." <span class='badge badge-primary badge-pill'>{$vs_content_count}</span></li>";
 					
-					if (sizeof($va_row) == $va_row_size) {
-						print "<tr valign='top'>".join('', $va_row)."</tr>\n";
-						
-						$va_row = array();
-					}
-				}
-				if (sizeof($va_row) > 0) {
-					if (sizeof($va_row) < $va_row_size) {
-						for($vn_i = sizeof($va_row); $vn_i <= $va_row_size; $vn_i++) {
-							$va_row[] = '<td> </td>';
-						}
-					}
-					print "<tr valign='top'>".join('', $va_row)."</tr>\n";
 				}
 ?>
-		</table>
+		</ul>
 <?php
 			}
 ?>

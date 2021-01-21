@@ -38,7 +38,7 @@
 	<p><?php print $o_tool->getToolDescription(); ?></p>
 </div>
 <?php
-	print caFormTag($this->request, 'Run', $vs_form_id, null, 'POST', 'multipart/form-data', '_top', array('disableUnsavedChangesWarning' => true, 'noTimestamp' => true));
+	print caFormTag($this->request, 'Run', $vs_form_id, null, 'POST', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true, 'noTimestamp' => true));
 	
 	print $vs_control_box = caFormControlBox(
 		caFormJSButton($this->request, __CA_NAV_ICON_SAVE__, _t("Run"), "caRunTool{$vs_tool_identifier}", array('onclick' => 'caShowConfirmToolExecutionPanel(); return false;')).' '.
@@ -51,7 +51,7 @@
 		<div class='bundleLabel'>
 			<span class="formLabelText"><?php print _t('Command'); ?></span> 
 			<div class="bundleContainer">
-				<div class="caLabelList" >
+				<div class="caLabelList">
 					<p>
 <?php
 					print caHTMLSelect('command', $o_tool->getCommands(), array('id' => 'caToolCommand'));
@@ -71,7 +71,7 @@
 				<div class="caLabelList" >
 					<p>
 <?php
-					print $o_tool->settingHTMLFormElement($vs_setting, array('id' => "{$vs_form_id}_{$vs_setting}", 'name' => "{$vs_form_id}_{$vs_setting}", 'request' => $this->request));
+					print $o_tool->settingHTMLFormElement($vs_setting, array('id' => "{$vs_form_id}_{$vs_setting}", 'name' => "{$vs_form_id}_{$vs_setting}", 'request' => $this->request, 'noContainerDiv' => true));
 ?>	
 					</p>
 				</div>

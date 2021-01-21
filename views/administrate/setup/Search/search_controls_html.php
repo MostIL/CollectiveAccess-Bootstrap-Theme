@@ -37,7 +37,7 @@
 	if (!$this->request->isAjax()) {
 		if (!$this->getVar('uses_hierarchy_browser')) {
 ?>
-		<?php print caFormTag($this->request, 'Index', 'BasicSearchForm', null, 'post', 'multipart/form-data', '_top', array('disableUnsavedChangesWarning' => true)); ?>
+		<?php print caFormTag($this->request, 'Index', 'BasicSearchForm', null, 'post', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true)); ?>
 <?php 
 			print caFormControlBox(
 				'<div class="simple-search-box">'._t('Search').': <input type="text" id="BasicSearchInput" name="search" value="'.htmlspecialchars($this->getVar('search'), ENT_QUOTES, 'UTF-8').'" size="40"/>'.$vs_type_id_form_element.'</div>',
@@ -48,7 +48,7 @@
 		</form>
 <?php
 		} else {
-			print caFormTag($this->request, 'Index', 'BasicSearchForm', null, 'post', 'multipart/form-data', '_top', array('disableUnsavedChangesWarning' => true));
+			print caFormTag($this->request, 'Index', 'BasicSearchForm', null, 'post', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true));
 				print caFormControlBox(
 					'<div class="simple-search-box">'._t('Search').': <input type="text" id="browseSearch" name="search" value="'.htmlspecialchars($this->getVar('search'), ENT_QUOTES, 'UTF-8').'" size="40"/></div>'.
 						caFormJSButton($this->request, __CA_NAV_ICON_SEARCH__, _t("Search"), 'submitSearch',
@@ -66,18 +66,20 @@
 <?php
 		if ($this->getVar('num_types') > 0) {	
 ?>
-					<form action='#' class="form-inline">	
-					<?php	
-						print "<div class='form-group mr-auto'>";
-						print _t('<label for="type_id">Add under %2 new</label> %1', $this->getVar('type_menu').' <a href="#" onclick="_navigateToNewForm(jQuery(\'#hierTypeList\').val())">'.caNavIcon(__CA_NAV_ICON_ADD__, 1)."</a>", "<span id='browseCurrentSelection'>?</span>");
-						print "</div>";
-						if($vs_table == 'ca_list_items') {
-					?>
-						<div class='form-group ml-auto'>
-							<?php print caNavLink($this->request, caNavIcon(__CA_NAV_ICON_ADD__, "30px").' '._t('Add new list'), 'btn btn-outline-secondary', 'administrate/setup/list_editor', 'ListEditor', 'Edit', array('list_id' => 0)); ?>
+					<form action='#'>	
+<?php
+			if($vs_table == 'ca_list_items') {
+?>
+						<div style="float: right;">
+							<?php print caNavLink($this->request, caNavIcon(__CA_NAV_ICON_ADD__, "30px").' '._t('Add new list'), 'list-link', 'administrate/setup/list_editor', 'ListEditor', 'Edit', array('list_id' => 0)); ?>
 						</div>
-						<?php } ?>
-			</form>
+<?php	
+			}
+						print "<div>";
+						print _t('Add under %2 new %1', $this->getVar('type_menu').' <a href="#" onclick="_navigateToNewForm(jQuery(\'#hierTypeList\').val())">'.caNavIcon(__CA_NAV_ICON_ADD__, 1)."</a>", "<span id='browseCurrentSelection'>?</span>");
+						print "</div>";
+?>
+					</form>
 <?php
 		} else {
 ?>

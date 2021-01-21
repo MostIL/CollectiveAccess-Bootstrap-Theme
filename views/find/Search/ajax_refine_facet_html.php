@@ -7,7 +7,7 @@
  * ----------------------------------------------------------------------
  *
  * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
- * Copyright 2010-2016 Whirl-i-Gig
+ * Copyright 2010-2017 Whirl-i-Gig
  *
  * For more information visit http://www.CollectiveAccess.org
  *
@@ -46,7 +46,7 @@
 		caUIBrowsePanel.showBrowsePanel('<?php print $vs_facet_name; ?>', <?php print ((intval($vm_modify_id) > 0) ? 'true' : 'false'); ?>, <?php print ((intval($vm_modify_id) > 0) ?  $vm_modify_id : 'null'); ?>, grouping);
 	}
 </script>
-<div id='browseFacetGroupingControls'>
+<div style="float: right;" id='browseFacetGroupingControls'>
 <?php 
 	if (isset($va_facet_info['groupings']) && is_array($va_facet_info['groupings']) && sizeof($va_facet_info['groupings'] )) {
 		print _t('Group by').': '; 
@@ -59,9 +59,8 @@
 </div>
 
 <div class="browseSelectPanelContentArea">
-<a href="#" onclick="$('#showRefine').show(); caUIBrowsePanel.hideBrowsePanel(); " class="browseSelectPanelButton"><?php print caNavIcon(__CA_NAV_ICON_CLOSE__); ?></a>
-	<h2 class='browse'><?php print unicode_ucfirst($va_facet_info['label_plural']); ?></h2>
-
+	<a href="#" onclick="$('#showRefine').show(); caUIBrowsePanel.hideBrowsePanel(); " class="browseSelectPanelButton"><?php print caNavIcon(__CA_NAV_ICON_CLOSE__, '18px'); ?></a>
+	<h2 class='browse'><?php print caUcFirstUTF8Safe($va_facet_info['label_plural']); ?></h2>
 <?php
 	switch($vs_group_mode) {
 		# ------------------------------------------------------------
@@ -108,14 +107,15 @@
 		case 'none':
 ?>
 	<div class="browseSelectPanelList">
-		<div class="list-group">
+	<div class="list-group">
 <?php
-		foreach($va_facet as $vn_i => $va_item) {
-
-			print caNavLink($this->request, $va_item['label'], 'list-group-item list-group-item-action', 'find', $this->request->getController(), ((strlen($vm_modify_id)) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => $va_item['id'], 'mod_id' => $vm_modify_id));
-		
-		}
-			
+			$va_row = array();
+			foreach($va_facet as $vn_i => $va_item) {
+?>
+<?php
+                $vs_content_count = (isset($va_item['content_count']) && ($va_item['content_count'] > 0)) ? " (".$va_item['content_count'].")" : "";
+				print '<li class="list-group-item list-group-item-action">'.caNavLink($this->request, $va_item['label'], 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id)) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => $va_item['id'], 'mod_id' => $vm_modify_id))."<span class='badge badge-primary badge-pill'>{$vs_content_count}</span></li>";
+			}
 ?>
 		</div>
 	</div>
@@ -127,8 +127,8 @@
 			$va_groups = array_keys($va_facet);
 ?>
 
-	<div class="p-2 bg-white">
-		<div>
+	<div class="browseSelectPanelHeader">
+		<div class="jumpToGroup">
 <?php 	
 	foreach($va_groups as $vs_group) {
 		print " <a href='#".(($vs_group === '~') ? '~' : $vs_group)."'>{$vs_group}</a> ";
@@ -143,14 +143,15 @@
 				if ($vs_group === '~') {
 					$vs_group = '~';
 				}
-				print "<h4 class='mt-4'><a name='{$vs_group}' class='browseSelectPanelListGroupHeading'>{$vs_group}</a></h4>\n";
+				print "<div class='mt-4'><a name='{$vs_group}' class='browseSelectPanelListGroupHeading'>{$vs_group}</a></div>\n";
 ?>
 		<div class="list-group">
 <?php
 				foreach($va_items as $va_item) {
-					print caNavLink($this->request, $va_item['label'], 'list-group-item list-group-item-action', 'find', $this->request->getController(), ((strlen($vm_modify_id) > 0) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => $va_item['id'], 'mod_id' => $vm_modify_id));
-					
+				    $vs_content_count = (isset($va_item['content_count']) && ($va_item['content_count'] > 0)) ? " (".$va_item['content_count'].")" : "";
+					print '<li class="list-group-item list-group-item-action">'.caNavLink($this->request, $va_item['label'], 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id) > 0) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => $va_item['id'], 'mod_id' => $vm_modify_id))."<span class='badge badge-primary badge-pill'>{$vs_content_count}</span></li>";
 				}
+
 ?>
 		</div>
 <?php
@@ -162,6 +163,7 @@
 		# ------------------------------------------------------------
 	}
 ?>
+
 	<div style='clear:both;width:100%'></div>
 
 </div>

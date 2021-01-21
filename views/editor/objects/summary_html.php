@@ -59,8 +59,8 @@
 	<div id="title">
 		<?php print $t_item->getLabelForDisplay(); ?>
 	</div><!-- end title -->
-	<table border="0" cellpadding="0" cellspacing="0" width="100%">
-		<tr class='summaryImages'>
+	<table class="table">
+		<tr>
 <?php
 		#$vn_left_col_width = "";
 		#if(sizeof($va_reps) > 2){
@@ -71,7 +71,7 @@
 		#	$vn_left_col_width = " width='420px'";
 		#}
 ?>
-			<td valign="top" align="center" width="744">
+			<td valign="top" align="center" colspan="2">
 <?php
 	if (is_array($va_reps)) {
 		foreach($va_reps as $va_rep) {
@@ -100,8 +100,6 @@
 ?>
 			</td>
 		</tr>
-		<tr>			
-			<td valign="top" align="left" style="padding-right:10px;">
 <?php
 		foreach($va_placements as $vn_placement_id => $va_info) {
 			$vs_class="";
@@ -114,7 +112,10 @@
 				$vs_display_value = "<"._t('not defined').">";
 				$vs_class = " notDefined";
 			}
-			print "<div class=\"unit".$vs_class."\"><span class=\"heading".$vs_class."\">".caTruncateStringWithEllipsis($va_info['display'], 26)."</span><span class='summaryData'> ".$vs_display_value."</span></div>\n";
+			print "<tr>
+			<th scope='row' >".caTruncateStringWithEllipsis($va_info['display'], 26)."</th>
+			<td> ".$vs_display_value."</td>
+			</tr>";
 		}
 ?>
 			</td>

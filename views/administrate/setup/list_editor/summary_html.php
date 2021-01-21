@@ -42,7 +42,7 @@
 			</a>
 		</div>
 <?php
-		print caFormTag($this->request, 'Summary', 'caSummaryDisplaySelectorForm');
+		print caFormTag($this->request, 'Summary', 'caSummaryDisplaySelectorForm', null, 'post', 'multipart/form-data', '_top', ['noCSRFToken' => true, 'disableUnsavedChangesWarning' => true]);
 ?>
 			<div class='searchFormSelector' style='float: right; '>
 <?php
@@ -59,7 +59,7 @@
 	</div><!-- end title -->
 	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 		<tr>
-			<td valign="top" align="left" style="padding-right:10px;">
+			<td valign="top" style="padding-right:10px;">
 <?php
 		foreach($va_placements as $vn_placement_id => $va_info) {
 			$vs_class = "";

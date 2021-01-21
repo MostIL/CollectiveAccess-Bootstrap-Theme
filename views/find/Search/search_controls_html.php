@@ -38,45 +38,43 @@
 	if (!$this->request->isAjax()) {
 		if (!$this->getVar('uses_hierarchy_browser')) {
 ?>
-		<?php print caFormTag($this->request, 'Index', 'BasicSearchForm', null, 'post', 'multipart/form-data', '_top', array('disableUnsavedChangesWarning' => true)); ?>
+		<?php print caFormTag($this->request, 'Index', 'BasicSearchForm', null, 'post', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true)); ?>
 <?php 
-			print '<h2>'._t('Search').'</h2>';
 			print caFormControlBox(
-				'<div class="simple-search-box"><input type="text" id="BasicSearchInput" calss="form-control" name="search" value="'.htmlspecialchars($this->getVar('search'), ENT_QUOTES, 'UTF-8').'" size="40"/>'.$vs_type_id_form_element.'</div>',
-				caFormSearchButton($this->request, __CA_NAV_ICON_SEARCH__, _t("Search"), 'BasicSearchForm'),
-				'<a href="#" class="btn btn-outline-secondary" onclick="caSaveSearch(\'BasicSearchForm\', jQuery(\'#BasicSearchInput\').val(), [\'search\']); return false;" class="button">'._t('Save search').' &rsaquo;</a>'				
+				'<div class="simple-search-box">'._t('Search').': <input type="text" id="BasicSearchInput" name="search" value="'.htmlspecialchars($this->getVar('search'), ENT_QUOTES, 'UTF-8').'" size="40"/>'.$vs_type_id_form_element.'</div>',
+				'<a href="#" onclick="caSaveSearch(\'BasicSearchForm\', jQuery(\'#BasicSearchInput\').val(), [\'search\']); return false;" class="button">'._t('Save search').' &rsaquo;</a>',
+				caFormSearchButton($this->request, __CA_NAV_ICON_SEARCH__, _t("Search"), 'BasicSearchForm')
 			); 
 ?>
 		</form>
 	<?php
 		} else {
-			print caFormTag($this->request, 'Index', 'BasicSearchForm', null, 'post', 'multipart/form-data', '_top', array('disableUnsavedChangesWarning' => true));
+			print caFormTag($this->request, 'Index', 'BasicSearchForm', null, 'post', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true));
 				print caFormControlBox(
-					'<div class="simple-search-box"><input type="text" id="BasicSearchInput" name="search" value="'.htmlspecialchars($this->getVar('search'), ENT_QUOTES, 'UTF-8').'" size="40"/></div>'
-						
+					'<div class="simple-search-box">'._t('Search').': <input type="text" id="BasicSearchInput" name="search" value="'.htmlspecialchars($this->getVar('search'), ENT_QUOTES, 'UTF-8').'" size="40"/></div>'.
+						caFormJSButton($this->request, __CA_NAV_ICON_SEARCH__, _t("Search"), 'submitSearch', array(), 
+						array('href' => '#', 'onclick' => 'caCloseBrowser(); jQuery("#resultBox").load("'.caNavUrl($this->request, 'find', $this->request->getController(), 'Index', array('search' => '')).'" + escape(jQuery("#BasicSearchInput").attr("value"))); return false;')),
+
 						//caFormSubmitButton($this->request, __CA_NAV_BUTTON_SEARCH__, _t("Search"), 'BasicSearchForm'),
 
-					,
-					caFormJSButton($this->request, __CA_NAV_ICON_SEARCH__, _t("Search"), 'submitSearch', array(), 
-					array('href' => '#', 'onclick' => 'caCloseBrowser(); jQuery("#resultBox").load("'.caNavUrl($this->request, 'find', $this->request->getController(), 'Index', array('search' => '')).'" + escape(jQuery("#BasicSearchInput").attr("value"))); return false;')),
-					'<a href="#" class="btn btn-outline-secondary" onclick="caSaveSearch(\'BasicSearchForm\', jQuery(\'#BasicSearchInput\').val(), [\'search\']); return false;" class="button">'._t('Save search').' &rsaquo;</a>'.
+					'<a href="#" onclick="caSaveSearch(\'BasicSearchForm\', jQuery(\'#BasicSearchInput\').val(), [\'search\']); return false;" class="button">'._t('Save search').' &rsaquo;</a>',
 					'<a href="#" id="browseToggle" class="form-button"></a>'
 				); 
 	?>
 			</form>
 			<div id="browse">
-				<h4 class='subTitle bg-light'><?php print _t("Hierarchy"); ?></h4>
+				<div class='subTitle' style='background-color: #eeeeee; padding:5px 0px 5px 5px;'><?php print _t("Hierarchy"); ?></div>
 	<?php
 		if ($this->request->user->canDoAction('can_edit_'.$vs_table) && ($this->getVar('num_types') > 0)) {	
 	?>
 				<!--- BEGIN HIERARCHY BROWSER TYPE MENU --->
 				<div id='browseTypeMenu'>
-					<form action='#' class="form-inline">
-					<?php	
-						print "<div class='form-group'>";
-						print _t('<label for="type_id">Add under %2 new</label> %1', $this->getVar('type_menu').' <a href="#" onclick="_navigateToNewForm(jQuery(\'#hierTypeList\').val())">'.caNavIcon(__CA_NAV_ICON_ADD__, 1)."</a>", "<span id='browseCurrentSelection' class='m-1'> </span>");
+					<form action='#'>
+	<?php	
+						print "<div>";
+						print _t('Add under %2 new %1', $this->getVar('type_menu').' <a href="#" onclick="_navigateToNewForm(jQuery(\'#hierTypeList\').val())">'.caNavIcon(__CA_NAV_ICON_ADD__, 1)."</a>", "<span id='browseCurrentSelection'></span>");
 						print "</div>";
-					?>
+	?>
 					</form>
 	
 				</div><!-- end browseTypeMenu -->		
@@ -96,12 +94,12 @@
 				var stateCookieJar = jQuery.cookieJar('caCookieJar');
 				
 				jQuery(document).ready(function() {
-
+					
 					jQuery('#browseTypeMenu .sf-hier-menu .sf-menu a').click(function() { 
 						jQuery(document).attr('location', jQuery(this).attr('href') + oHierBrowser.getSelectedItemID());	
 						return false;
 					});	
-
+					
 					oHierBrowser = caUI.initHierBrowser('hierarchyBrowser', {
 						levelDataUrl: '<?php print $va_lookup_urls['levelList']; ?>',
 						initDataUrl: '<?php print $va_lookup_urls['ancestorList']; ?>',
@@ -123,7 +121,7 @@
 						
 						currentSelectionDisplayID: 'browseCurrentSelection'
 					});
-
+					
 					jQuery('#BasicSearchInput').autocomplete(
 						{
 							minLength: 3, delay: 800, html: true,

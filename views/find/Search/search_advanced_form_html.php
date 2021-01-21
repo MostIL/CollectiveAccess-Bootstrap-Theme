@@ -1,10 +1,13 @@
 <?php
 /* ----------------------------------------------------------------------
- * themes/mana/views/find/search_advanced_form_html.php 
+ * themes/default/views/find/search_advanced_form_html.php 
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
  * ----------------------------------------------------------------------
+ *
+ * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
+ * Copyright 2009-2017 Whirl-i-Gig
  *
  * For more information visit http://www.CollectiveAccess.org
  *
@@ -31,8 +34,10 @@
 		// no form defined
 		//
 ?>
-		<div class="alert alert-warning" role="alert">
-			<?php print _t("You must define a search form before you can use the advanced search.").' '.caNavLink($this->request, _t('Click here to create a new form.'), '', 'manage', 'SearchForm', 'ListForms'); ?>
+		<div class="notification-warning-box">
+			<ul class='notification-warning-box'>
+				<li class='notification-warning-box'><?php print _t("You must define a search form before you can use the advanced search.").' '.caNavLink($this->request, _t('Click here to create a new form.'), '', 'manage', 'SearchForm', 'ListForms'); ?></li>
+			</ul>
 		</div>
 <?php
 	} else {
@@ -41,10 +46,10 @@
 			// No access to form - shouldn't ever happen
 			//
 ?>
-			<div class="alert alert-danger" role="alert">
-				<h4 class="alert-heading">
-					<?php print _t('You do not have access to this form'); ?>
-				</h4>
+			<div class="notification-error-box">
+				<ul class='notification-error-box'>
+					<li class='notification-error-box'><?php print _t('You do not have access to this form'); ?></li>
+				</ul>
 			</div>
 <?php
 		} else {
@@ -58,23 +63,25 @@
 				$va_flds[] = "'".$va_element['name']."'";
 			}
 ?>
-	<div class="jumbotron">
-		<?php print caFormTag($this->request, 'Index', 'AdvancedSearchForm', null, 'post', 'multipart/form-data', '_top', array('disableUnsavedChangesWarning' => true)); ?>
+	<?php print caFormTag($this->request, 'Index', 'AdvancedSearchForm', null, 'post', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true)); ?>
+		<div class="control-box rounded">
+			<div class="simple-search-box">
 				<?php print $this->render('Search/search_forms/search_form_table_html.php'); ?>
-			<div class="form-row">
-				<?php print caJSButton($this->request, __CA_NAV_ICON_CANCEL__, _t("Reset"), 'AdvancedSearchFormReset', array('onclick' => 'caAdvancedSearchFormReset()'), array()); ?>			
-				<?php print caJSButton($this->request, __CA_NAV_ICON_SEARCH__, _t("Search"), 'AdvancedSearchFormSearch', array('onclick' => 'jQuery("#AdvancedSearchForm").submit();'), array()); ?> 
 			</div>
-			<hr class="my-4">
-			<div class="form-row justify-content-end">
-				<div class="col-6">
-					<span><?php print _t("Save search as"); ?>:</span>
-					<?php print caHTMLTextInput('_label', array('class'=>'form-control','id' => 'caAdvancedSearchSaveLabelInput')); ?>
-					<a href="#" onclick="caSaveSearch('AdvancedSearchForm', jQuery('#caAdvancedSearchSaveLabelInput').val(), [<?php print join(',', $va_flds); ?>]); return false;" class="button"><?php print caNavIcon(__CA_NAV_ICON_GO__, "18px"); ?></a>
-				</div>
+			
+			<br style="clear: both;"/>
+			
+			<div style="float:right; ">
+				<?php print caJSButton($this->request, __CA_NAV_ICON_CANCEL__, _t("Reset"), 'AdvancedSearchForm', array('onclick' => 'caAdvancedSearchFormReset()'), array()); ?>			
+				<?php print caFormSearchButton($this->request, __CA_NAV_ICON_SEARCH__, _t("Search"), 'AdvancedSearchForm'); ?>
 			</div>
-		</form>
-	</div>
+			<div class="saveAs" style="float: right; margin-right:20px;">
+				<?php print _t("Save search as"); ?>:
+				<?php print caHTMLTextInput('_label', array('size' => 10, 'id' => 'caAdvancedSearchSaveLabelInput')); ?>
+				<a href="#" onclick="caSaveSearch('AdvancedSearchForm', jQuery('#caAdvancedSearchSaveLabelInput').val(), [<?php print join(',', $va_flds); ?>]); return false;" class="button"><?php print caNavIcon(__CA_NAV_ICON_GO__, "18px"); ?></a>
+			</div>
+		</div>
+	</form>
 <?php
 		}
 	}

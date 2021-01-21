@@ -126,7 +126,7 @@
 ?>
 	<script type="text/javascript">
 		var o<?php print $vs_id_prefix; ?>HierarchyBrowser;
-		jQuery(document).ready(function() {
+		jQuery(document).ready(function() {//chcak
 			o<?php print $vs_id_prefix; ?>HierarchyBrowser = caUI.initHierBrowser('<?php print $vs_id_prefix; ?>HierarchyBrowser', {
 				levelDataUrl: '<?php print $va_lookup_urls['levelList']; ?>',
 				initDataUrl: '<?php print $va_lookup_urls['ancestorList']; ?>',

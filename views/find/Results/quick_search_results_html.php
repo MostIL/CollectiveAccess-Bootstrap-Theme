@@ -30,9 +30,8 @@
  
  $ps_search = $this->getVar('search');
  
- $o_dm = Datamodel::load();
  
- $vs_sort_form = caFormTag($this->request, 'Index', 'QuickSearchSortForm');
+ $vs_sort_form = caFormTag($this->request, 'Index', 'QuickSearchSortForm', null , 'post', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true));
  $vs_sort_form .= _t('Sort by ').caHTMLSelect('sort', array(_t('name') => 'name', _t('relevance') => 'relevance', _t('idno') => 'idno'), array('onchange' => 'jQuery("#QuickSearchSortForm").submit();'), array('value' => $this->getVar('sort')));
  $vs_sort_form .= "</form>";
  
@@ -68,7 +67,7 @@
 				<div class="quickSearchHalfWidthResults" id='<?php print $vs_target_id; ?>_results' style="display:none;">
 					<ul class='quickSearchList'>
 <?php
-						$t_instance = $o_dm->getInstanceByTableName($vs_table, true);
+						$t_instance = Datamodel::getInstanceByTableName($vs_table, true);
 						$va_type_list = $t_instance->getTypeList();
 						
 						$vb_show_labels = !(($vs_table === 'ca_objects') && ($t_instance->getAppConfig()->get('ca_objects_dont_use_labels')));
@@ -96,7 +95,8 @@
 								}
 								
 								print '<li class="quickSearchList">' .
-									caEditorLink($this->request, $vs_label." ".($vs_idno_display ? "({$vs_idno_display})" : ""), null, $vs_table, $o_res->get($va_info['primary_key'])) .
+									caEditorLink($this->request, $vs_label, null, $vs_table, $o_res->get($va_info['primary_key'])) .
+									" ".($vs_idno_display ? "({$vs_idno_display})" : "") .
 									" {$vs_type_display}</li>\n";
 							}
 						}

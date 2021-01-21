@@ -200,7 +200,7 @@
 		<?php print caGetRelationDisplayString($this->request, $t_item->tableName(), array(), array('display' => '_display', 'makeLink' => false)); ?>
 	</textarea>
 </div>			
-	
+
 <script type="text/javascript">
 	var caRelationBundle<?php print $vs_id_prefix; ?>;
 	var initiRelationBundleOptions<?php print $vs_id_prefix; ?>;

@@ -37,22 +37,22 @@
 </script>
 <div class="sectionBox">
 <?php 
-		print caFormTag($this->request, 'ListUsers', 'caUserListForm', null, 'post', 'multipart/form-data', '_top', array('disableUnsavedChangesWarning' => true));
+		print caFormTag($this->request, 'ListUsers', 'caUserListForm', null, 'post', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true));
 		print caFormControlBox(
 			'<div class="list-filter">'._t('Filter').': <input type="text" name="filter" value="" onkeyup="$(\'#caItemList\').caFilterTable(this.value); return false;" size="20"/></div>', 
-			'<div class="form-inline">'._t('Show %1 users', caHTMLSelect('userclass', $this->request->user->getFieldInfo('userclass', 'BOUNDS_CHOICE_LIST'), array('onchange' => 'jQuery("#caUserListForm").submit();'), array('value' => $this->getVar('userclass')))).'</div>', 
+			''._t('Show %1 users', caHTMLSelect('userclass', $this->request->user->getFieldInfo('userclass', 'BOUNDS_CHOICE_LIST'), array('onchange' => 'jQuery("#caUserListForm").submit();'), array('value' => $this->getVar('userclass')))), 
 			caNavHeaderButton($this->request, __CA_NAV_ICON_ADD__, _t("New user"), 'administrate/access', 'Users', 'Edit', array('user_id' => 0), [], ['size' => '30px'])
 		); 
 ?>		
-		<?php
-			if(sizeof($va_user_list)){	
-		?>	
-				<a href='#' id='showTools' onclick='jQuery("#searchToolsBox").slideDown(250); jQuery("#showTools").hide(); return false;'><?php print caNavIcon(__CA_NAV_ICON_SETTINGS__, "24px");?></a>
-		<?php
-				print $this->render('user_tools_html.php');
-			}
-		?>
-		<h1><?php print _t('%1 users', ucfirst($this->getVar('userclass_displayname'))); ?></h1>
+		<h1 style='float:left; margin:10px 0px 10px 0px;'><?php print _t('%1 users', ucfirst($this->getVar('userclass_displayname'))); ?></h1>
+<?php
+	if(sizeof($va_user_list)){	
+?>	
+		<a href='#' id='showTools' style="float:left;margin-top:10px;" onclick='jQuery("#searchToolsBox").slideDown(250); jQuery("#showTools").hide(); return false;'><?php print caNavIcon(__CA_NAV_ICON_SETTINGS__, "24px");?></a>
+<?php
+		print $this->render('user_tools_html.php');
+	}
+?>
 		<table id="caItemList" class="listtable" width="100%" border="0" cellpadding="0" cellspacing="1">
 			<thead>
 				<tr>

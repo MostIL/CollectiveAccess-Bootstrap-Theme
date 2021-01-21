@@ -1,37 +1,62 @@
 <?php
 /* ----------------------------------------------------------------------
- * views/dashboard/dashboard_html.php : 
+ * themes/default/views/dashboard/dashboard_html.php : 
  * ----------------------------------------------------------------------
- * Israel Ministry of Sports and Culture 
- * 
- * Theme for CollectiveAccess
+ * CollectiveAccess
  * Open-source collections management software
  * ----------------------------------------------------------------------
  *
- * For more information about Israel Ministry of Sports and Culture visit:
- * https://www.gov.il/en/Departments/ministry_of_culture_and_sport
+ * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
+ * Copyright 2010-2016 Whirl-i-Gig
  *
- * For more information about CollectiveAccess visit:
- * http://www.CollectiveAccess.org
+ * For more information visit http://www.CollectiveAccess.org
  *
  * This program is free software; you may redistribute it and/or modify it under
- * the terms of the provided license.
+ * the terms of the provided license as published by Whirl-i-Gig
  *
- * This theme for CollectiveAccess is distributed in the hope that it will be useful, but
+ * CollectiveAccess is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  *
  * This source code is free and modifiable under the terms of 
  * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
- * the "license.txt" file for details. 
+ * the "license.txt" file for details, or visit the CollectiveAccess web site at
+ * http://www.CollectiveAccess.org
  *
  * ----------------------------------------------------------------------
  */
- 	require_once(__CA_LIB_DIR__.'/ca/DashboardManager.php');
+ 	require_once(__CA_LIB_DIR__.'/DashboardManager.php');
  
 	AssetLoadManager::register('draggableUI');		// adds jQuery UI draggable 
 	AssetLoadManager::register('dashboard');			// adds caUI dashboard library
 ?>
+<div class="hpGuideBanner">
+	<div class="row">
+		<div class="col-3"></div>
+		<div class="col-9">
+			<h3>מדריך עבודה במערכת</h3>
+		</div>
+	</div>
+	<div class="row">
+	<div class="col-3"></div>
+		<div class="col">
+			<div class="list-group">
+					<a href="../guide/Search/" target="_blank" class="list-group-item"><i class="fa fa-search"></i> איך לבצע חיפוש במערכת</a>
+					<a href="../guide/Displays/" target="_blank" class="list-group-item"><i class="fa fa-table"></i> תצוגות - איזה שדות צריך לראות בתוצאות החיפוש</a>
+					<a href="../guide/sets/" target="_blank" class="list-group-item"><i class="fa fa-object-group"></i> עריכה קבוצתית - איך לעדכן הרבה פריטים ביחד</a>
+					<a href="../guide/import/" target="_blank" class="list-group-item"><i class="fa fa-upload"></i> איך לייבוא פריטים מאקסל</a>
+			</div>
+		</div>
+		<div class="col">
+				<div class="list-group">
+					<a href="../guide/objects/" target="_blank" class="list-group-item"><i class="fa fa-image"></i> פריטים - שדות של דף פריט </a>
+					<a href="../guide/Entities/" target="_blank" class="list-group-item"><i class="fa fa-users"></i> יישיות - איך לנהל אמן,יוצר, צלם</a>
+					<a href="../guide/lots/" target="_blank" class="list-group-item"><i class="fa fa-calendar"></i> כניסה לאוסף - ניהול הכניסה לאוסף</a>
+					<a href="../guide/StorageLocations/" target="_blank" class="list-group-item"><i class="fa fa-map-marker"></i> מקומות אחסון - איפה הפריט נמצא?</a>
+				</div>
+			</div>
+	</div>
+</div>
 <!-- Empty DIV uses for the "popup" widget chooser panel -->
 <div id="dashboardWidgetPanel" class="dashboardWidgetPanel">
 	<a href="#" onclick="caDashboardWidgetPanel.hideWidgetPanel();" class="dashboardWidgetPanelHide">&nbsp;</a>

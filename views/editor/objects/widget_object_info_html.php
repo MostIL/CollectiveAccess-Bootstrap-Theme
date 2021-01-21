@@ -25,5 +25,8 @@
  *
  * ----------------------------------------------------------------------
  */
- 	print caEditorInspector($this, array());
+	require_once(__CA_THEME_DIR__.'/helpers/displayHelpers.php'); 
+	 
+	print manaEditorInspector($this, array());
+	
 ?>

@@ -1,30 +1,28 @@
 <?php
 /* ----------------------------------------------------------------------
- * views/batch/mediaimport/confirm_html.php : 
+ * bundles/confirm_html.php : 
  * ----------------------------------------------------------------------
- * Israel Ministry of Sports and Culture 
- * 
- * Theme for CollectiveAccess
+ * CollectiveAccess
  * Open-source collections management software
  * ----------------------------------------------------------------------
  *
- * For more information about Israel Ministry of Sports and Culture visit:
- * https://www.gov.il/en/Departments/ministry_of_culture_and_sport
+ * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
+ * Copyright 2012-2013 Whirl-i-Gig
  *
- * For more information about CollectiveAccess visit:
- * http://www.CollectiveAccess.org
+ * For more information visit http://www.CollectiveAccess.org
  *
  * This program is free software; you may redistribute it and/or modify it under
- * the terms of the provided license.
+ * the terms of the provided license as published by Whirl-i-Gig
  *
- * This theme for CollectiveAccess is distributed in the hope that it will be useful, but
+ * CollectiveAccess is distributed in the hope that it will be useful, but
  * WITHOUT ANY WARRANTIES whatsoever, including any implied warranty of 
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
  *
  * This source code is free and modifiable under the terms of 
  * GNU General Public License. (http://www.gnu.org/copyleft/gpl.html). See
- * the "license.txt" file for details. 
- * 
+ * the "license.txt" file for details, or visit the CollectiveAccess web site at
+ * http://www.CollectiveAccess.org
+ *
  * ----------------------------------------------------------------------
  */
  
@@ -58,8 +56,6 @@
 	
 	function caExecuteBatch() {
 		jQuery("#caBatchMediaImportForm").submit();
-		jQuery("#caConfirmBatchExecutionPanelContentArea").hide();
-		jQuery("#caConfirmBatchExecutionPanel").append('<div style="text-align: center; padding: 15px;"><i class="fa fa-spinner fa-spin" style="font-size:60px;/* margin: auto; */"></i></div>');
 	}
 </script>
 <div id="caConfirmBatchExecutionPanel" class="caConfirmBatchExecutionPanel"> 

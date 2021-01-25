@@ -7,7 +7,7 @@
  * ----------------------------------------------------------------------
  *
  * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
- * Copyright 2009-2014 Whirl-i-Gig
+ * Copyright 2009-2018 Whirl-i-Gig
  *
  * For more information visit http://www.CollectiveAccess.org
  *
@@ -25,7 +25,6 @@
  *
  * ----------------------------------------------------------------------
  */
- 
 	$vs_id_prefix 				= 	$this->getVar('placement_code').$this->getVar('id_prefix');
 	$vs_error_source_code 		= 	$this->getVar('error_source_code');
 	$vs_render_mode 			=	$this->getVar('render_mode');
@@ -87,7 +86,7 @@
 		$vs_bundle_preview = $vs_display_template ? $t_instance->getWithTemplate($vs_display_template) : $t_instance->getAttributesForDisplay($va_root_element['element_id'], null, array('showHierarchy' => true));
 	}
 
-	if (sizeof($va_attribute_list)) {
+	if (is_array($va_attribute_list) && sizeof($va_attribute_list)) {
 		$va_item_ids = array();
 		foreach ($va_attribute_list as $o_attr) {
 			$va_initial_values[$o_attr->getAttributeID()] = array();
@@ -97,17 +96,23 @@
 				
 				if ($va_failed_updates[$vn_attr_id] && !in_array($o_value->getDatatype(), array(
 					__CA_ATTRIBUTE_VALUE_LCSH__, 
-					__CA_ATTRIBUTE_VALUE_PLACE__,
-					__CA_ATTRIBUTE_VALUE_OCCURRENCE__,
+					__CA_ATTRIBUTE_VALUE_OBJECTS__,
+					__CA_ATTRIBUTE_VALUE_OBJECTLOTS__,
+					__CA_ATTRIBUTE_VALUE_ENTITIES__,
+					__CA_ATTRIBUTE_VALUE_PLACES__,
+					__CA_ATTRIBUTE_VALUE_OCCURRENCES__,
+					__CA_ATTRIBUTE_VALUE_COLLECTIONS__,
+					__CA_ATTRIBUTE_VALUE_STORAGELOCATIONS__,
+					__CA_ATTRIBUTE_VALUE_LOANS__,
+					__CA_ATTRIBUTE_VALUE_MOVEMENTS__,
 					__CA_ATTRIBUTE_VALUE_TAXONOMY__,
 					__CA_ATTRIBUTE_VALUE_INFORMATIONSERVICE__,
 					__CA_ATTRIBUTE_VALUE_OBJECTREPRESENTATIONS__,
-					__CA_ATTRIBUTE_VALUE_ENTITIES__
 				))) {
 					// copy value from failed update into form (so user can correct it)
 					$vs_display_val = $va_failed_updates[$vn_attr_id][$vn_element_id];
 				} else {
-					$vs_display_val = $o_value->getDisplayValue(array('request' => $this->request, 'includeID' => true));
+					$vs_display_val = $o_value->getDisplayValue(array('request' => $this->request, 'includeID' => true, 'showMediaInfo' => true));
 				}
 				
 				$va_initial_values[$vn_attr_id][$vn_element_id] = $vs_display_val;
@@ -189,7 +194,7 @@ if (caGetOption('canMakePDF', $va_element_info[$t_element->getPrimaryKey()]['set
 <?php
 	if (($vs_render_mode !== 'checklist') && !$vb_read_only) {		// static (non-repeating) checkbox list for list attributes
 ?>
-			<div class="caDeleteLabel">
+			<div style="float: right;">
 				<a href="#" class="caDeleteItemButton"><?php print caNavIcon(__CA_NAV_ICON_DEL_BUNDLE__, 1); ?></a>
 			</div>				
 <?php
@@ -216,12 +221,16 @@ if (caGetOption('canMakePDF', $va_element_info[$t_element->getPrimaryKey()]['set
 			foreach($va_elements as $vn_container_id => $va_element_list) {
 				if ($vn_container_id === '_locale_id') { continue; }
 ?>
+				<table class="attributeListItem">
+					<tr>
 <?php
 						foreach($va_element_list as $vs_element) {
 							// any <textarea> tags in the template needs to be renamed to 'textentry' for the template to work
-							print '<div class="attributeListItem">'.str_replace("textarea", "textentry", $vs_element).'</div>';
+							print '<td class="attributeListItem">'.str_replace("textarea", "textentry", $vs_element).'</td>';
 						}
 ?>
+					</tr>
+				</table>
 <?php
 			}	
 

@@ -64,7 +64,7 @@ if($vo_result->numHits() > 0) {
 		<?php
 		print caFormTag($this->request, 'Index', 'caSearchOptionsForm',  null , 'post', 'multipart/form-data', '_top', array('noCSRFToken' => true, 'disableUnsavedChangesWarning' => true));
 
-		print "<div class='col'>";
+		print "<div class='row p-2'>";
 		print _t("Sort").": <select name='sort' style='width: 70px;'>\n";
 
 		$vs_current_sort = $vo_result_context->getCurrentSort();
@@ -83,7 +83,7 @@ if($vo_result->numHits() > 0) {
 
 		print "</div>";
 
-		print "<div class='col'>";
+		print "<div class='row p-2'>";
 		$va_items_per_page = $this->getVar("items_per_page");
 		$vn_current_items_per_page = (int)$vo_result_context->getItemsPerPage();
 		print _t("#/page").": <select name='n' style='width: 50px;'>\n";
@@ -95,7 +95,7 @@ if($vo_result->numHits() > 0) {
 		print "</select>\n";
 		print "</div>";
 
-		print "<div class='col'>";
+		print "<div class='row p-2'>";
 		$va_views = $this->getVar("views");
 		$vs_current_view = $vo_result_context->getCurrentView();
 		print _t("Layout").": <select name='view' style='width: 100px;'>\n";
@@ -107,7 +107,7 @@ if($vo_result->numHits() > 0) {
 		print "</select>\n";
 		print "</div>";
 
-		print "<div class='col'>";
+		print "<div class='row p-2'>";
 		$va_display_lists = $this->getVar("display_lists");
 		
 		print _t("Display").": <select name='display_id' style='width: 100px;'>\n";

@@ -2228,9 +2228,7 @@ a.searchSuggestion {
 }
 
 #searchToolsBox .col{
-    float:left;
     margin-right:15px;
-    color:#333;
     padding-bottom:15px;
 }
 
@@ -2345,13 +2343,10 @@ a.searchSuggestion {
 	line-height: 1.7em;
 }
 .objectFullText .formLabel {
-	font-family: 'DIN-Regular', Helvetica, sans-serif;
 	font-size: 13px;
 	border-bottom: 1px solid #333;
 }
 .objectFullTextTitle{
-	text-align: left;
-	font-family: "Helvetica Neue", sans-serif;
 	font-size: 15px;
 	color: #134959;
 	margin-top: 10px;
@@ -5999,6 +5994,56 @@ div.dialogHeader {
     border-radius:4px;
     -moz-border-radius:4px;
     -webkit-border-radius:4px;
+}
+
+/* Editor summary download options */
+#caSummaryDownloadOptionsPanel {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 550px;
+    display: none;
+    margin: 0px;
+    padding:0px !important;
+    border: 2px solid #999999;
+    z-index: 31000;			/* needs to be on top of menu bar, which has z-index=30000 */
+    background-color: #FFFFFF;
+}
+
+#caSummaryDownloadOptionsPanel .close a{
+    text-decoration:none;
+    font-size:16px;
+}
+
+#caSummaryDownloadOptionsPanelContentArea {
+    padding:10px;
+}
+
+#caSummaryDownloadOptionsPanelControlButtons {
+    width: 490px;
+    text-align: center;
+}
+
+#caSummaryDownloadOptionsPanelControlButtons table {
+    width: 100%;
+}
+
+.caSummaryDownloadOptionsPanelAlertText {
+    font-size: 14px;
+    padding: 15px;
+}
+
+.caSummaryDownloadOptionsPanelAlertControls {
+    margin-bottom: 10px;
+}
+
+table.caSummaryDownloadOptionsPanelAlertControls {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.caSummaryDownloadOptionsPanelAlertControl {
+    font-size: 11px;
 }
 
 /* Quick add */

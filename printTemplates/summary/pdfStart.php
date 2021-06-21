@@ -1,13 +1,13 @@
 <?php
 /* ----------------------------------------------------------------------
- * themes/default/views/administrate/setup/no_results_html.php
+ * app/templates/pdfStart.php : top-matter prepended to PDF templates
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
  * ----------------------------------------------------------------------
  *
  * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
- * Copyright 2009-2014 Whirl-i-Gig
+ * Copyright 2014 Whirl-i-Gig
  *
  * For more information visit http://www.CollectiveAccess.org
  *
@@ -23,13 +23,39 @@
  * the "license.txt" file for details, or visit the CollectiveAccess web site at
  * http://www.CollectiveAccess.org
  *
+ * -=-=-=-=-=- CUT HERE -=-=-=-=-=-
+ * Template configuration:
+ *
+ * @name PDF start
+ * @type pageStart
+ *
  * ----------------------------------------------------------------------
- */	
+ */
  
- 	$t_subject = $this->getVar('t_subject');
- 	$vs_search = $this->getVar('search');
+ $t_item = $this->getVar('t_subject');
+ 
+?><!DOCTYPE html>
+<html dir='rtl'>
+	<head>
+		<title><?php print _t('Summary for %1 (%2)', $t_item->getLabelForDisplay(), $t_item->get($t_item->getProperty('ID_NUMBERING_ID_FIELD'))); ?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+				
+<?php
+	if(file_exists($this->getVar('base_path')."/local/pdf.css")){
+?>
+		<link type="text/css" href="<?php print $this->getVar('base_path'); ?>/local/pdf.css" rel="stylesheet" />
+<?php	
+	} else {
+?>
+		<link type="text/css" href="<?php print $this->getVar('base_path'); ?>/pdf.css" rel="stylesheet" />
+<?php
+	}
 ?>	
-<div id="resultBox">
-	<div class="subTitle"><?php print $this->getVar('search') ? _t("Your search found no %1", $this->getVar('mode_type_plural')) : _t("Please enter a search"); ?>
-	</div>
-</div><!-- end resultbox -->
+		<style type="text/css">
+			@page { margin: {{{marginTop}}} {{{marginRight}}} {{{marginBottom}}} {{{marginLeft}}}; }
+		</style>
+		<script type="text/javascript">
+			var PhantomJSPrinting = {};
+		</script>
+	</head>
+	<body>

@@ -1,13 +1,13 @@
 <?php
 /* ----------------------------------------------------------------------
- * themes/default/views/administrate/setup/no_results_html.php
+ * app/templates/pdfStart.php : top-matter prepended to PDF templates
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
  * ----------------------------------------------------------------------
  *
  * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
- * Copyright 2009-2014 Whirl-i-Gig
+ * Copyright 2014 Whirl-i-Gig
  *
  * For more information visit http://www.CollectiveAccess.org
  *
@@ -23,13 +23,21 @@
  * the "license.txt" file for details, or visit the CollectiveAccess web site at
  * http://www.CollectiveAccess.org
  *
+ * -=-=-=-=-=- CUT HERE -=-=-=-=-=-
+ * Template configuration:
+ *
+ * @name PDF start
+ * @type pageStart
+ *
  * ----------------------------------------------------------------------
- */	
- 
- 	$t_subject = $this->getVar('t_subject');
- 	$vs_search = $this->getVar('search');
-?>	
-<div id="resultBox">
-	<div class="subTitle"><?php print $this->getVar('search') ? _t("Your search found no %1", $this->getVar('mode_type_plural')) : _t("Please enter a search"); ?>
-	</div>
-</div><!-- end resultbox -->
+ */
+?><!DOCTYPE html>
+<html>
+	<head>
+		<title><?php print $this->getVar('title'); ?></title>
+		<link type="text/css" href="<?php print $this->getVar('base_path'); ?>/pdf.css" rel="stylesheet" />
+		<style type="text/css">
+			@page { margin: 0px; }
+		</style>
+	</head>
+	<body>

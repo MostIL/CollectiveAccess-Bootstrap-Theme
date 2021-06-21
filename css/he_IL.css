@@ -173,3 +173,14 @@ a.browseSelectPanelButton {
 .floatbylang{
     float: left;
 }
+.objectFullImageContainer {
+    float: right;
+    margin: 10px 0px 10px 20px;
+}
+.objectFullText {
+    text-align: right;
+}
+
+#summary #printButton {
+    float: left;
+}

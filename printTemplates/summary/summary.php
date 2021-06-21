@@ -1,13 +1,13 @@
 <?php
 /* ----------------------------------------------------------------------
- * views/editor/entities/summary_html.php : 
+ * app/templates/summary/summary.php
  * ----------------------------------------------------------------------
  * CollectiveAccess
  * Open-source collections management software
  * ----------------------------------------------------------------------
  *
  * Software by Whirl-i-Gig (http://www.whirl-i-gig.com)
- * Copyright 2010-2018 Whirl-i-Gig
+ * Copyright 2014 Whirl-i-Gig
  *
  * For more information visit http://www.CollectiveAccess.org
  *
@@ -23,35 +23,50 @@
  * the "license.txt" file for details, or visit the CollectiveAccess web site at
  * http://www.CollectiveAccess.org
  *
+ * -=-=-=-=-=- CUT HERE -=-=-=-=-=-
+ * Template configuration:
+ *
+ * @name Generic summary
+ * @type page
+ * @pageSize letter
+ * @pageOrientation portrait
+ * @tables *
+ * @generic 1
+ *
+ * @marginTop 0.75in
+ * @marginLeft 0.25in
+ * @marginBottom 0.5in
+ * @marginRight 0.25in
+ *
  * ----------------------------------------------------------------------
  */
+ 
  	$t_item 				= $this->getVar('t_subject');
-	$vn_item_id 			= $this->getVar('subject_id');
-	
+	$va_bundle_displays 	= $this->getVar('bundle_displays');
 	$t_display 				= $this->getVar('t_display');
 	$va_placements 			= $this->getVar("placements");
+	
+	print $this->render("pdfStart.php");
+	print $this->render("header.php");
+	print $this->render("footer.php");
 ?>
-<div id="summary" style="clear: both;">
+	<br/>
+	<div class="title">
+		<?php 
+			preg_match_all('/./us', $t_item->getLabelForDisplay(), $ar);
+			print join('',array_reverse($ar[0]))
+		?>
+	</div>
 <?php
-    print caEditorPrintSummaryControls($this);
-?>
-	<h4 style="clear: both;">
-		<?php print $t_item->getLabelForDisplay(); ?>
- </h4><!-- end title -->
-	<table class="table">	
-<?php
-		foreach($va_placements as $vn_placement_id => $va_info) {
-			$vs_class = "";
-			if (!strlen($vs_display_value = $t_display->getDisplayValue($t_item, $vn_placement_id, array_merge(array('request' => $this->request), is_array($va_info['settings']) ? $va_info['settings'] : array())))) {
-				if (!(bool)$t_display->getSetting('show_empty_values')) { continue; }
-				$vs_display_value = "&lt;"._t('not defined')."&gt;";
-				$vs_class = " notDefined";
-			}
-			print "<tr><th>".$va_info['display'].":</th><td> ".$vs_display_value."</td></tr>\n";
-		}
-?>
-	</table>
-</div><!-- end summary -->
-<?php
-		TooltipManager::add('#printButton', _t("Download Summary as PDF"));
-		TooltipManager::add('a.downloadMediaContainer', _t("Download Media"));
+	foreach($va_placements as $vn_placement_id => $va_bundle_info){
+		if (!is_array($va_bundle_info)) break;
+		
+		if (!strlen($vs_display_value = $t_display->getDisplayValue($t_item, $vn_placement_id, array('purify' => true)))) {
+			if (!(bool)$t_display->getSetting('show_empty_values')) { continue; }
+			$vs_display_value = "&lt;"._t('not defined')."&gt;";
+		} 
+		
+		print '<div class="data"><span class="label">'."{$va_bundle_info['display']} </span><span> {$vs_display_value}</span></div>\n";
+	}
+
+	print $this->render("pdfEnd.php");

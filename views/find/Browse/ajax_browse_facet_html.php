@@ -146,7 +146,7 @@
 				$vs_label = caGetLabelForDisplay($va_facet, $va_item, $va_facet_info);
 				
 				$vs_content_count = (isset($va_item['content_count']) && ($va_item['content_count'] > 0)) ? " (".$va_item['content_count'].")" : "";
-				print "<li class='list-group-item list-group-item-action' data-facet_item_id='{$va_item['id']}'>".caNavLink($this->request, html_entity_decode($vs_label), 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id)) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => urlencode($va_item['id']), 'mod_id' => $vm_modify_id))."<span class='badge badge-primary badge-pill'>{$vs_content_count}</span></li>";
+				print "<li class='list-group-item list-group-item-action' data-facet_item_id='{$va_item['id']}'>".caNavLink($this->request, html_entity_decode($vs_label), 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id)) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => urlencode($va_item['id']), 'mod_id' => $vm_modify_id))."<span class='badge bg-primary'>{$vs_content_count}</span></li>";
 
 			}
 ?>
@@ -213,7 +213,7 @@
 					$vs_label = caGetLabelForDisplay($va_facet, $va_item, $va_facet_info);
 				
 				    $vs_content_count = (isset($va_item['content_count']) && ($va_item['content_count'] > 0)) ? " (".$va_item['content_count'].")" : "";
-					print "<li class='list-group-item list-group-item-action' data-facet_item_id='{$va_item['id']}'>".caNavLink($this->request, html_entity_decode($vs_label), 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id) > 0) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => urlencode($va_item['id']), 'mod_id' => $vm_modify_id))." <span class='badge badge-primary badge-pill'>{$vs_content_count}</span></li>";
+					print "<li class='list-group-item list-group-item-action' data-facet_item_id='{$va_item['id']}'>".caNavLink($this->request, html_entity_decode($vs_label), 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id) > 0) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => urlencode($va_item['id']), 'mod_id' => $vm_modify_id))." <span class='badge bg-primary'>{$vs_content_count}</span></li>";
 					
 				}
 ?>

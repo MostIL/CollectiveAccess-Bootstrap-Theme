@@ -114,7 +114,7 @@
 ?>
 <?php
                 $vs_content_count = (isset($va_item['content_count']) && ($va_item['content_count'] > 0)) ? " (".$va_item['content_count'].")" : "";
-				print '<li class="list-group-item list-group-item-action">'.caNavLink($this->request, $va_item['label'], 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id)) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => $va_item['id'], 'mod_id' => $vm_modify_id))."<span class='badge badge-primary badge-pill'>{$vs_content_count}</span></li>";
+				print '<li class="list-group-item list-group-item-action">'.caNavLink($this->request, $va_item['label'], 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id)) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => $va_item['id'], 'mod_id' => $vm_modify_id))."<span class='badge bg-primary'>{$vs_content_count}</span></li>";
 			}
 ?>
 		</div>
@@ -149,7 +149,7 @@
 <?php
 				foreach($va_items as $va_item) {
 				    $vs_content_count = (isset($va_item['content_count']) && ($va_item['content_count'] > 0)) ? " (".$va_item['content_count'].")" : "";
-					print '<li class="list-group-item list-group-item-action">'.caNavLink($this->request, $va_item['label'], 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id) > 0) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => $va_item['id'], 'mod_id' => $vm_modify_id))."<span class='badge badge-primary badge-pill'>{$vs_content_count}</span></li>";
+					print '<li class="list-group-item list-group-item-action">'.caNavLink($this->request, $va_item['label'], 'mx-2', 'find', $this->request->getController(), ((strlen($vm_modify_id) > 0) ? 'modifyCriteria' : 'addCriteria'), array('facet' => $vs_facet_name, 'id' => $va_item['id'], 'mod_id' => $vm_modify_id))."<span class='badge bg-primary'>{$vs_content_count}</span></li>";
 				}
 
 ?>
